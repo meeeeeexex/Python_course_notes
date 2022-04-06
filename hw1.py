@@ -1,6 +1,6 @@
 '''
 our function prints time and weather info at Berlin, NY and Kyiv
-wrapper - changes it via adding UTC format to date
+wrapper - changes it via adding GMT format to date
 '''
 from functools import wraps
 from datetime import datetime, timedelta
