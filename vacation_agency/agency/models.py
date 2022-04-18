@@ -1,20 +1,11 @@
 from django.db import models
 from typing import List
 
-"""
-
-from agency.models import User
-v = User(name="Vlad",surname="Dolgopolov")
-v.save()
-
-"""
-
 
 def currently_available_cities() -> List[str]:
     return ['London', 'Paris', 'Berlin', 'Lisbon']
 
 
-# Create your models here.
 class User(models.Model):
     def __str__(self):
         return f"{self.id} {self.name}"
@@ -49,6 +40,9 @@ class City:
 
 
 class Accomodation(models.Model):
+    def __str__(self):
+        return f'{self.name, self.price}$ {self.square}m2'
+
     name = models.CharField(max_length=250)
     city_location = models.CharField(
         max_length=25,
@@ -63,6 +57,9 @@ class Accomodation(models.Model):
 
 
 class Excursion(models.Model):
+    def __str__(self):
+        return f'{self.city, self.price}$ {self.duration}minutes'
+
     city = models.CharField(
         max_length=25,
         choices=City.ALL_CITIES,
