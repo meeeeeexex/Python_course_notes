@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <title>Ratings</title>
 </head>
+<style>
+    span{
+        color: #003366;
+        font-weight: bold;
+    }
+</style>
 <body>
-
+{% for excurs in excursions%}
+<div>Excursion in <span>{{excurs.city}}</span> which takes {{excurs.duration}} minutes and costs{{excurs.price}}</div>
+{%endfor%}
+{% for excurs in apartments%}
+<div>Excursion in {{excurs.city}} which takes <span>{{excurs.rate}}</span> </div>
+{%endfor%}
 </body>
 </html>

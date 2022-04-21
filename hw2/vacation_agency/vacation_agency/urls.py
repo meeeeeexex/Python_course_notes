@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from agency.views import WelcomePageView
+from agency.views import WelcomePageView, RatingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', WelcomePageView.as_view()),
+    path('ratings/', RatingView.as_view()),
+
 ]

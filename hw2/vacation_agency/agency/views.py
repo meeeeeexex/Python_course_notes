@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from agency.models import User, ExcursionVisiting
+from agency.models import User, Excursion, ExcursionVisiting
 
 
 # Create your views here.
@@ -23,4 +23,29 @@ class WelcomePageView(TemplateView):
 
 
 class RatingView(TemplateView):
-    ...
+    template_name = 'ratings.html'
+
+    def get_context_data(self, **kwargs):
+        return {
+            'excursions': [{
+                'city': excursion.city,
+                'duration': excursion.duration,
+                'price': excursion.price,
+
+            }
+                for excursion in Excursion.
+                objects.order_by("id")[:100:-1]],
+
+            # не описывал методы для апартаментов потому что они аналогичны -
+            # и стоит сначала решить вопросы с экскурсиями - поэтому ниже код, который в дальнейшем
+            # будет использоваться для экскурсий
+            'apartments': [{
+                'city': apartment.excursion.city,
+                'rate': apartment.user_rate
+            }
+
+                for apartment in ExcursionVisiting.
+                objects.order_by("user_rate")[:100]
+            ]
+
+        }
