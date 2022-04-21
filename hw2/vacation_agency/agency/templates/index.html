@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for user in users %}
+{% if user.last_city == "NO VISITED CITIES YET"%}
+<div>Hello, {{ user.name }}, we are happy to suggest you interesting excursions and greatest hotels in the largest European cities</div>
+{% else %}
+<div>Welcome back, {{ user.name }} whose last visited city was {{user.last_city}}</div>
+{%endif%}
+{% endfor %}
+</body>
+</html>
