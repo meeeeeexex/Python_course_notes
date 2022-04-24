@@ -18,7 +18,7 @@ class WelcomePageView(TemplateView):
             }
                 for user in
                 User.objects.prefetch_related("visited_excursions").
-                order_by("id", "visited_excursions")[:100:-1]]
+                    order_by("id", "visited_excursions")[:100:-1]]
         }
 
 
@@ -34,7 +34,7 @@ class RatingView(TemplateView):
 
             }
                 for excursion in Excursion.
-                objects.order_by("id")[:100:-1]],
+                                     objects.order_by("id")[:100:-1]],
 
             # не описывал методы для апартаментов потому что они аналогичны -
             # и стоит сначала решить вопросы с экскурсиями - поэтому ниже код, который в дальнейшем
@@ -45,7 +45,7 @@ class RatingView(TemplateView):
             }
 
                 for apartment in ExcursionVisiting.
-                objects.order_by("user_rate")[:100]
+                objects.order_by("user_rate")[:100]  # TODO: remake it
             ]
 
         }
