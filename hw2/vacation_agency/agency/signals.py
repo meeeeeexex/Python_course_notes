@@ -12,4 +12,4 @@ def update_average_excursion_rating(instance: ExcursionRating, created, *args, *
         ExcursionVisiting.objects.get(
             user_id=instance.user_id,
             excursion_id=instance.excursion_id
-        ).update_user_rate()
+        ).update_user_rate(instance.score)

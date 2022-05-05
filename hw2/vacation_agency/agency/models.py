@@ -2,6 +2,9 @@ from django.db import models
 from typing import List
 
 
+# from django.utils import timezone
+
+
 def currently_available_cities() -> List[str]:
     return ['London', 'Paris', 'Berlin', 'Lisbon']
 
@@ -15,6 +18,9 @@ class City:
 class Excursion(models.Model):
     def __str__(self):
         return f'{self.city}, {self.price}$ {self.duration} minutes'
+
+    class Meta:
+        ordering = ['-id']
 
     city = models.CharField(
         max_length=25,
@@ -32,12 +38,16 @@ class ExcursionVisiting(models.Model):
     def __str__(self):
         return f"{self.user.name} visited {self.excursion.city} with {self.excursion.duration}"
 
-    user = models.ForeignKey('agency.User', on_delete=models.CASCADE)
-    excursion = models.ForeignKey(Excursion, on_delete=models.CASCADE)
+    class Meta:
+        ordering = ['-user_rate']
+
+    user = models.ForeignKey('agency.User', on_delete=models.CASCADE, related_name='users')
+    excursion = models.ForeignKey(Excursion, on_delete=models.CASCADE, related_name='excursions')
     user_rate = models.FloatField(null=True, blank=True)
 
-    def update_user_rate(self):
-        self.user_rate = 100
+    def update_user_rate(self, score):
+        self.user_rate = score
+        self.save(update_fields=['user_rate'])
 
 
 # класс для опознания кто отдыхал в каких апартаментах

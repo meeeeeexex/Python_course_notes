@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from agency.models import User, Excursion, ExcursionVisiting
+# from rest_framework import serializers
 
 
 # Create your views here.
@@ -34,18 +35,20 @@ class RatingView(TemplateView):
 
             }
                 for excursion in Excursion.
-                                     objects.order_by("id")[:100:-1]],
+                                     objects.order_by("id")[:100]],
 
             # не описывал методы для апартаментов потому что они аналогичны -
             # и стоит сначала решить вопросы с экскурсиями - поэтому ниже код, который в дальнейшем
             # будет использоваться для экскурсий
             'apartments': [{
-                'city': apartment.excursion.city,
-                'rate': apartment.user_rate
+                'city': excursion_item.excursion.city,
+                'rate': excursion_item.user_rate
             }
 
-                for apartment in ExcursionVisiting.
-                objects.order_by("user_rate")[:100]  # TODO: remake it
+                for excursion_item in ExcursionVisiting.
+                                          objects.order_by("user_rate")[:100]
             ]
 
         }
+
+
