@@ -27,7 +27,6 @@ class ExcursionVisitingSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         ...
 
-
     class Meta:
         model = ExcursionVisiting
         # лучше ли было бы просто использовать fields = '__all__'

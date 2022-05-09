@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from agency.models import User, Excursion, ExcursionVisiting
-# from rest_framework import serializers
 
 
 # Create your views here.

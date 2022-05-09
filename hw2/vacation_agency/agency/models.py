@@ -78,6 +78,7 @@ class User(models.Model):
         ALL_DJANGO = ((x, x) for x in ALL)
 
     name = models.CharField(max_length=250)
+    email = models.EmailField(max_length=250, null=True, blank=True)
     surname = models.CharField(max_length=250)
     family_size = models.IntegerField(default=1)
     wealthy_status = models.CharField(

@@ -20,8 +20,10 @@ class CustomPagination(PageNumberPagination):
 
     def get_page_number(self, request, paginator):
         page_number = request.query_params.get(self.page_query_param, 1)
-        if isinstance(page_number, str) and any(roman_symbol in page_number for roman_symbol in 'XMLVICD'):
+        if isinstance(page_number, str) and \
+                any(roman_symbol in page_number for roman_symbol in 'XMLVICD'):
             page_number = roman.fromRoman(page_number)
+
         if page_number in self.last_page_strings:
             page_number = paginator.num_pages
         return page_number

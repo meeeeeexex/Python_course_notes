@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'agency',
     'rest_framework',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +120,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_CACHE_BACKEND = 'django-cache'
+
+# # celery setting.
+# CELERY_CACHE_BACKEND = 'default'
+
+# django setting.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
+BROKER_URL = 'redis://localhost:6379/0'
+
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'

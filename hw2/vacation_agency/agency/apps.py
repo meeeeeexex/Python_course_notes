@@ -7,4 +7,5 @@ class AgencyConfig(AppConfig):
 
     def ready(self):
         from . import signals
-        signals.request_finished.connect(signals.update_average_excursion_rating)
+        # signals.request_finished.connect(signals.update_average_excursion_rating)
+        # signals.request_finished.connect(signals.confirm_user_mail)
