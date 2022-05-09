@@ -13,4 +13,4 @@
 
 **Fourth homework** - in the hw3.py
 
-**5 homework** - in the h_w2 dir_ added Celery and views through drf 
+**5 homework** - in the **hw2 dir** added Celery and views through drf 
