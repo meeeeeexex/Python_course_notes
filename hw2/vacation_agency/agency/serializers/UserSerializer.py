@@ -2,7 +2,6 @@ from agency.models import User, Excursion, ExcursionVisiting
 from rest_framework import serializers
 
 
-# TODO: add field to Excursion with average rate
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -16,7 +15,8 @@ class ExcursionSerializer(serializers.ModelSerializer):
             'id',
             'city',
             'duration',
-            'price'
+            'price',
+            'avg_rate',
         )
 
 

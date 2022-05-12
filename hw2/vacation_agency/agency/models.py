@@ -30,7 +30,13 @@ class Excursion(models.Model):
     # we know that min duration is 30 minutes
     duration = models.PositiveSmallIntegerField(default=30)
     interests = models.CharField(max_length=250, null=True, blank=True)
-    price = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    avg_rate = models.FloatField(null=True, blank=True)
+
+    def update_avg_score(self, score):
+        # print(f'{score} for {self.city}')
+        self.avg_rate = score
+        self.save(update_fields=['avg_rate'])
 
 
 # класс для опознания кто побывал на какой экскурсии
@@ -105,11 +111,14 @@ class Accommodation(models.Model):
 
     square = models.PositiveIntegerField()
     amount_of_beds = models.PositiveIntegerField(default=1)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
 
 
 # класс с помощью которого хранятся рейтинги оставленные той или иной экскурсии
 class ExcursionRating(models.Model):
+    def __repr__(self):
+        return f"User {self.user.name} set to ({self.excursion}) rating {self.score}\n"
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     excursion = models.ForeignKey(Excursion, on_delete=models.CASCADE)
     score = models.FloatField(default=0)
